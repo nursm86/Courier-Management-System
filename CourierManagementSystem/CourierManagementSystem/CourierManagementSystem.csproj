@@ -96,6 +96,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\styles\bootstrap.js" />
+    <Content Include="Content\styles\bootstrap.min.css" />
+    <Content Include="Content\styles\icons.js" />
+    <Content Include="Content\styles\indexstyle.css" />
+    <Content Include="Content\styles\jquery-clockpicker.min.css" />
+    <Content Include="Content\styles\jquery-clockpicker.min.js" />
+    <Content Include="Content\styles\mainscript.js" />
+    <Content Include="Content\styles\script.js" />
+    <Content Include="Content\styles\style.css" />
+    <Content Include="Content\system_image\abou-us.png" />
+    <Content Include="Content\system_image\admin.png" />
+    <Content Include="Content\system_image\booking.png" />
+    <Content Include="Content\system_image\fb.png" />
+    <Content Include="Content\system_image\insta.png" />
+    <Content Include="Content\system_image\linkedin.png" />
+    <Content Include="Content\system_image\log.svg" />
+    <Content Include="Content\system_image\mainimage.png" />
+    <Content Include="Content\system_image\messi.jpg" />
+    <Content Include="Content\system_image\mlogo.png" />
+    <Content Include="Content\system_image\neymar.jpg" />
+    <Content Include="Content\system_image\register.svg" />
+    <Content Include="Content\system_image\ronaldo.jpg" />
+    <Content Include="Content\system_image\UpperWave.svg" />
+    <Content Include="Content\system_image\utube.png" />
+    <Content Include="Content\system_image\whtsapp.png" />
     <Content Include="Global.asax" />
     <Content Include="Models\CourierDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -179,6 +204,7 @@
       <DependentUpon>CourierDB.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
+    <Content Include="Views\Shared\_EmployeeLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -188,6 +214,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\js\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
