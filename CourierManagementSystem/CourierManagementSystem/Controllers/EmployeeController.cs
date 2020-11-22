@@ -28,5 +28,18 @@ namespace CourierManagementSystem.Controllers
         {
             return View();
         }
+        public ActionResult createnewCustomer()
+        {
+            return View();
+        }
+        public ActionResult receivedProduct()
+        {
+            return View();
+        }
+
+        public ActionResult shipProduct()
+        {
+            return View();
+        }
     }
 }
