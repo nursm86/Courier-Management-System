@@ -13,29 +13,5 @@ namespace CourierManagementSystem.Controllers
         {
             return View();
         }
-        public ActionResult Profile()
-        {
-            return View();
-        }
-        public ActionResult TrackProduct()
-        {
-            return View();
-        }
-        public ActionResult CustServiceHistory()
-        {
-            return View();
-        }
-        public ActionResult CustNewOrder()
-        {
-            return View();
-        }
-        public ActionResult CustHelpLine()
-        {
-            return View();
-        }
-        public ActionResult CustTermCondition()
-        {
-            return View();
-        }
     }
 }
