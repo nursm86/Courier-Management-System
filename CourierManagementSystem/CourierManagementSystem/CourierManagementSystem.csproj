@@ -214,6 +214,11 @@
     <Content Include="Views\Shared\_customer.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Customer\Profile.cshtml" />
+    <Content Include="Views\Customer\TrackProduct.cshtml" />
+    <Content Include="Views\Customer\CustServiceHistory.cshtml" />
+    <Content Include="Views\Customer\CustNewOrder.cshtml" />
+    <Content Include="Views\Customer\CustHelpLine.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
