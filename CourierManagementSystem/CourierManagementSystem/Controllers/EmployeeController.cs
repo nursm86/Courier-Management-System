@@ -41,5 +41,17 @@ namespace CourierManagementSystem.Controllers
         {
             return View();
         }
+        public ActionResult releaseProduct()
+        {
+            return View();
+        }
+        public ActionResult helpline()
+        {
+            return View();
+        }
+        public ActionResult terms()
+        {
+            return View();
+        }
     }
 }
