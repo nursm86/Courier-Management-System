@@ -23,5 +23,10 @@ namespace CourierManagementSystem.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ActionResult viewCustomers()
+        {
+            return View();
+        }
     }
 }
