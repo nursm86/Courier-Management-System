@@ -14,14 +14,9 @@ namespace CourierManagementSystem.Repositories
             List<Customer> customers = GetAll();
             foreach (var user in customers)
             {
-                user.User = uR.Get(user.User_Id);
+                user.User = uR.Get(user.Id);
             }
             return customers;
-        }
-
-        public Customer Get(int id)
-        {
-            return this.context.Set<Customer>().Where<Customer>(x=>x.User_Id == id).FirstOrDefault();
         }
     }
 }

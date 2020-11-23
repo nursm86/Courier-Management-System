@@ -14,14 +14,21 @@ namespace CourierManagementSystem.Models
     
     public partial class Customer
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Customer()
+        {
+            this.Products = new HashSet<Product>();
+        }
+    
         public string Name { get; set; }
         public string Contact { get; set; }
         public string Address { get; set; }
         public string Sequrity_Que { get; set; }
         public System.DateTime UpdatedDate { get; set; }
-        public int User_Id { get; set; }
-        public int id { get; set; }
+        public int Id { get; set; }
     
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

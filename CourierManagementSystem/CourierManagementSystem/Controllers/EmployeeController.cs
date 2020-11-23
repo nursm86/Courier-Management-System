@@ -19,7 +19,7 @@ namespace CourierManagementSystem.Controllers
         {
             int id = (int)Session["uid"];
             Employee user = empRepo.Get(id);
-            user.User = userRepo.Get(user.User_Id);
+            user.User = userRepo.Get(user.Id);
             return View(user);
             
         }
@@ -27,16 +27,15 @@ namespace CourierManagementSystem.Controllers
         [HttpPost]
         public ActionResult Index(Employee e)
         {
-            return Content(e.Id.ToString());
-            //empRepo.Update(e);
-            //return RedirectToAction("index");
+            empRepo.Update(e);
+            return RedirectToAction("profile");
         }
         [HttpGet]
-        public ActionResult Profile()
+        public new ActionResult Profile()
         {
             int id = (int)Session["uid"];
             Employee user = empRepo.Get(id);
-            user.User = userRepo.Get(user.User_Id);
+            user.User = userRepo.Get(user.Id);
             return View(user);
         }
         [HttpGet]
@@ -82,6 +81,14 @@ namespace CourierManagementSystem.Controllers
         public ActionResult createnewCustomer()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult createnewCustomer(User u,Customer c)
+        {
+            u.Status = 1;
+            userRepo.insertUser(u, c);
+            return RedirectToAction("viewCustomers");
         }
         [HttpGet]
         public ActionResult receivedProduct()
@@ -149,6 +156,29 @@ namespace CourierManagementSystem.Controllers
         public ActionResult updateInfo()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult updatePassword(User u,FormCollection fc)
+        {
+            if (userRepo.ValidatePassword(u.Id, fc["currentPass"]))
+            {
+                TempData["errmsg"] = "Your Current Password is not correct";
+                return RedirectToAction("profile");
+            }
+            else
+            {
+                if (u.Password == fc["cpass"])
+                {
+                    userRepo.UpdatePassword(u.Id,u.Password);
+                    return RedirectToAction("index", "login");
+                }
+                else
+                {
+                    TempData["errmsg"] = "Password and Confirm Password Doesn't Match!!!";
+                    return RedirectToAction("profile");
+                }
+            }
         }
     }
 }

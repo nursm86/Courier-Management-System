@@ -14,9 +14,8 @@ namespace CourierManagementSystem.Models
     
     public partial class Employee_Problems
     {
-        public int Id { get; set; }
         public System.DateTime UpdatedDate { get; set; }
-        public int User_id { get; set; }
+        public int Id { get; set; }
         public int Branch_id { get; set; }
         public string Problem { get; set; }
     

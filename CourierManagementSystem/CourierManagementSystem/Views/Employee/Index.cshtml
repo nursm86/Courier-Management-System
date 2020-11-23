@@ -14,6 +14,7 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editpass"><i class="fa fa-key"></i></button>
                 </div>
                 <h3>@Model.Name</h3>
+                <h3 style="color:red">@TempData["errmsg"]</h3>
                 <p></p>
             </div>
         </div>
@@ -74,7 +75,7 @@
                     <tr>
                         <td class="tdattribute">Designation</td>
                         <td>:</td>
-                        <td>@Model.Designation</td>
+                        <td>Manager</td>
 
                     </tr>
 
@@ -133,21 +134,28 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="POST">
+                    <form action="/employee/updatePassword" method="POST">
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.User.UserName)
+                        @Html.HiddenFor(model => model.User.EmailAddress)
+                        @Html.HiddenFor(model => model.UpdatedDate)
+                        @Html.HiddenFor(model => model.User.UserType)
+                        @Html.HiddenFor(model => model.User.Status)
+                        @Html.HiddenFor(model => model.User.image)
                         <div class="form-group">
                             <label for="pass">Current Password</label>
-                            <input type="password" class="form-control" name="pass">
+                            <input type="password" class="form-control" name="currentPass">
                         </div>
                         <div class="form-group">
                             <label for="npass">New Password</label>
-                            <input type="password" class="form-control" name="npass">
+                            <input type="password" class="form-control" name="password">
                         </div>
                         <div class="form-group">
                             <label for="cPass">Confirm Password</label>
                             <input type="password" class="form-control" name="cPass">
                         </div>
 
-                </div>
+</div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary" name="passUpdate">Update</button>
@@ -168,6 +176,17 @@
                 </div>
                 <div class="modal-body">
                     <form action="" method="POST">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.Joining_date)
+                        @Html.HiddenFor(model => model.Salary)
+                        @Html.HiddenFor(model => model.Bonus)
+                        @Html.HiddenFor(model => model.Designation)
+                        @Html.HiddenFor(model => model.Branch_id)
+                        @Html.HiddenFor(model => model.UpdatedDate)
+                        @Html.HiddenFor(model => model.Blood_Group)
+                        @Html.HiddenFor(model => model.Qualification)
                         <div class="form-group">
                             <label>Name</label>
                             <input type="text" class="form-control" name="name" value="@Model.Name">
@@ -175,7 +194,7 @@
 
                         <div class="form-group">
                             <label>Date of Birth</label>
-                            <input type="text" class="form-control" name="dob" value="@Model.DOB">
+                            <input type="datetime" class="form-control" name="dob" value="@Model.DOB">
                         </div>
 
                         <div class="form-group">
@@ -186,7 +205,7 @@
                             <label>Phone Number</label>
                             <input type="text" class="form-control" name="Contact" value="@Model.Contact">
                         </div>
-                </div>
+</div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="submit" class="btn btn-primary" name="infoUpdate" value="Update">

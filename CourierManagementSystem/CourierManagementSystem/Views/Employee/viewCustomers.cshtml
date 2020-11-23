@@ -9,48 +9,73 @@
     <h1 class="text-white bg-dark text-center">
         All verified Customers
     </h1><br>
-    <div class="row">
-        <div class="col-md-2">
-            <div class="form-group">
-
-                <select class="form-control" name="accountType" id="searchBy">
-                    <option value="" disabled selected>Search By</option>
-                    <option value="Name">Name</option>
-                    <option value="ContactNo">Contact</option>
-                    <option value="Address">Address</option>
-                </select>
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <select class="form-control" name="see" id="see">
+                        <option value="" selected>All</option>
+                        <option value="Invalid">InValid</option>
+                        <option value="Valid">Valid</option>
+                        <option value="Blocked">Blocked</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="col-md-8 donor">
-            <input type="text" name="" id="search_text" placeholder="Search Customers " onkeyup="search()">
-        </div>
-    </div><br>
 
-    <div class="row ">
+            <div class="col-md-2">
+                <div class="form-group">
 
-        <table class="table" id="myTable">
-            <thead>
-                <tr>
-                    <td>Name</td>
-                    <td>Email Address</td>
-                    <td>Contact No</td>
-                    <td>Address</td>
-                </tr>
-            </thead>
-            <tbody id="suggestion">
-                <div class="col-md-8">
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@item.Name</td>
-                            <td>@item.User.EmailAddress</td>
-                            <td>@item.Contact</td>
-                            <td>@item.Address</td>
-                            <td>@Html.ActionLink("View", "ViewCustomer", new { id = item.User_Id},new {@class = "btn btn-warning" })</td>
-                        </tr>
-                    }
-</tbody>
-        </table>
+                    <select class="form-control" name="searchBy" id="searchby">
+                        <option value="1" disabled selected>Search By</option>
+                        <option value="1">Name</option>
+                        <option value="2">Email</option>
+                        <option value="3">Contact</option>
+                        <option value="4">Address</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-8 donor">
+                <input type="text" name="" id="search" placeholder="Search Customers">
+            </div>
+        </div><br>
+
+        <div class="row ">
+
+            <table class="table" id="myTable">
+                <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Email Address</td>
+                        <td>Contact No</td>
+                        <td>Address</td>
+                        <td>Status</td>
+                    </tr>
+                </thead>
+                <tbody id="suggestion">
+                    <div class="col-md-8">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.User.EmailAddress</td>
+                                <td>@item.Contact</td>
+                                <td>@item.Address</td>
+                                @if (item.User.Status == 1)
+                                {
+                                    <td>Valid</td>
+                                }
+                                else if (item.User.Status == 2)
+                                {
+                                    <td>Blocked</td>
+                                }
+                                else
+                                {
+                                    <td>Invalid</td>
+                                }
+                                <td>@Html.ActionLink("View", "ViewCustomer", new { id = item.Id }, new { @class = "btn btn-warning" })</td>
+                            </tr>
+                        }
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 

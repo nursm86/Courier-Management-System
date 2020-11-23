@@ -96,6 +96,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\js\main.js" />
     <Content Include="Content\profile_pic\messi.jpg" />
     <Content Include="Content\profile_pic\neymar.jpg" />
     <Content Include="Content\profile_pic\ProfileImage.jpg" />
@@ -128,15 +129,15 @@
     <Content Include="Content\system_image\utube.png" />
     <Content Include="Content\system_image\whtsapp.png" />
     <Content Include="Global.asax" />
-    <Content Include="Models\CourierDB.Context.tt">
+    <Content Include="Models\CoureirDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CourierDB.edmx</DependentUpon>
-      <LastGenOutput>CourierDB.Context.cs</LastGenOutput>
+      <DependentUpon>CoureirDB.edmx</DependentUpon>
+      <LastGenOutput>CoureirDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\CourierDB.tt">
+    <Content Include="Models\CoureirDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CourierDB.edmx</DependentUpon>
-      <LastGenOutput>CourierDB.cs</LastGenOutput>
+      <DependentUpon>CoureirDB.edmx</DependentUpon>
+      <LastGenOutput>CoureirDB.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
   </ItemGroup>
@@ -152,34 +153,34 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Branch.cs">
-      <DependentUpon>CourierDB.tt</DependentUpon>
+      <DependentUpon>CoureirDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BranchMetaData.cs" />
-    <Compile Include="Models\CourierDB.Context.cs">
+    <Compile Include="Models\CoureirDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CourierDB.Context.tt</DependentUpon>
+      <DependentUpon>CoureirDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CourierDB.cs">
+    <Compile Include="Models\CoureirDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CourierDB.tt</DependentUpon>
+      <DependentUpon>CoureirDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CourierDB.Designer.cs">
+    <Compile Include="Models\CoureirDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CourierDB.edmx</DependentUpon>
+      <DependentUpon>CoureirDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
-      <DependentUpon>CourierDB.tt</DependentUpon>
+      <DependentUpon>CoureirDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomerMetaData.cs" />
     <Compile Include="Models\Employee.cs">
-      <DependentUpon>CourierDB.tt</DependentUpon>
+      <DependentUpon>CoureirDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EmployeeMetaData.cs" />
     <Compile Include="Models\Employee_Problems.cs">
-      <DependentUpon>CourierDB.tt</DependentUpon>
+      <DependentUpon>CoureirDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee_ProblemsMetaData.cs" />
     <Compile Include="Models\PartialBranch.cs" />
@@ -189,11 +190,11 @@
     <Compile Include="Models\PartialProduct.cs" />
     <Compile Include="Models\PartialUser.cs" />
     <Compile Include="Models\Product.cs">
-      <DependentUpon>CourierDB.tt</DependentUpon>
+      <DependentUpon>CoureirDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductMetaData.cs" />
     <Compile Include="Models\User.cs">
-      <DependentUpon>CourierDB.tt</DependentUpon>
+      <DependentUpon>CoureirDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserMetaData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -208,12 +209,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <EntityDeploy Include="Models\CourierDB.edmx">
+    <EntityDeploy Include="Models\CoureirDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CourierDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>CoureirDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\CourierDB.edmx.diagram">
-      <DependentUpon>CourierDB.edmx</DependentUpon>
+    <Content Include="Models\CoureirDB.edmx.diagram">
+      <DependentUpon>CoureirDB.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <Content Include="Views\Shared\_EmployeeLayout.cshtml" />
@@ -257,7 +258,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\js\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

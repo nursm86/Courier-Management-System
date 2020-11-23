@@ -16,7 +16,7 @@ namespace CourierManagementSystem.Models
     public partial class CourierManagement : DbContext
     {
         public CourierManagement()
-            : base("name=CourierManagement")
+            : base("name=CourierManagementSystemEntities3")
         {
         }
     

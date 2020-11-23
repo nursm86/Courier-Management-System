@@ -43,10 +43,10 @@
             </tbody>
         </table>
             <div class="form-group">
-                <a href="/employee/ViewCustomers/@Model.User_Id" class="btn btn-warning">Cancel</a>
-                <a href="/employee/VerifyCustomer/@Model.User_Id" class="btn btn-success" @if (Model.User.Status != 0) { @hide }>Verify User</a>
-                <a href="/employee/UnBlockCustomer/@Model.User_Id" class="btn btn-success" @if (Model.User.Status != 2) { @hide }>Unblock</a>
-                <a href="/employee/BlockCustomer/@Model.User_Id" class="btn btn-danger" @if (Model.User.Status == 2 ) { @hide }>Block</a>
+                <a href="/employee/ViewCustomers/@Model.Id" class="btn btn-warning">Cancel</a>
+                <a href="/employee/VerifyCustomer/@Model.Id" class="btn btn-success" @if (Model.User.Status != 0) { @hide }>Verify User</a>
+                <a href="/employee/UnBlockCustomer/@Model.Id" class="btn btn-success" @if (Model.User.Status != 2) { @hide }>Unblock</a>
+                <a href="/employee/BlockCustomer/@Model.Id" class="btn btn-danger" @if (Model.User.Status == 2 ) { @hide }>Block</a>
             </div>
     </div>
 </div>

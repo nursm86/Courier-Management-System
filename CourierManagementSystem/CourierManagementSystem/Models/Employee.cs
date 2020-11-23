@@ -14,6 +14,13 @@ namespace CourierManagementSystem.Models
     
     public partial class Employee
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Employee()
+        {
+            this.Products = new HashSet<Product>();
+            this.Products1 = new HashSet<Product>();
+        }
+    
         public string Name { get; set; }
         public Nullable<System.DateTime> Joining_date { get; set; }
         public Nullable<System.DateTime> DOB { get; set; }
@@ -24,12 +31,15 @@ namespace CourierManagementSystem.Models
         public Nullable<int> Designation { get; set; }
         public Nullable<int> Branch_id { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
-        public int User_Id { get; set; }
+        public int Id { get; set; }
         public string Blood_Group { get; set; }
         public string Qualification { get; set; }
-        public int Id { get; set; }
     
         public virtual Branch Branch { get; set; }
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products1 { get; set; }
     }
 }

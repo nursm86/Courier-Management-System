@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CourierManagementSystem.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Branches">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Branch_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Contact" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sequrity_Que" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee_Problems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Branch_id" Type="int" Nullable="false" />
+    <Property Name="Problem" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Joining_date" Type="datetime" />
+    <Property Name="DOB" Type="datetime" />
+    <Property Name="Salary" Type="float" />
+    <Property Name="Bonus" Type="float" />
+    <Property Name="Contact" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Designation" Type="int" />
+    <Property Name="Branch_id" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Blood_Group" Type="nvarchar" MaxLength="10" />
+    <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductType" Type="int" Nullable="false" />
+    <Property Name="Customer_id" Type="int" Nullable="false" />
+    <Property Name="Receiving_B_id" Type="int" Nullable="false" />
+    <Property Name="Sending_B_id" Type="int" Nullable="false" />
+    <Property Name="Delivery_charge" Type="float" Nullable="false" />
+    <Property Name="Receiving_Manager_id" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Sending_Manager_id" Type="int" Nullable="false" />
+    <Property Name="ProductCategory" Type="int" Nullable="false" />
+    <Property Name="PaymentMethod" Type="int" Nullable="false" />
+    <Property Name="RecieverName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RecieverEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="RecieverContact" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RecieverAddress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Product_State" Type="int" Nullable="false" />
+    <Property Name="Release_Date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmailAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserType" Type="int" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="image" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_Customers_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customers">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Problems_Branch">
+    <End Role="Branches" Type="Self.Branches" Multiplicity="1" />
+    <End Role="Employee_Problems" Type="Self.Employee_Problems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branches">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee_Problems">
+        <PropertyRef Name="Branch_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Problems_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Employee_Problems" Type="Self.Employee_Problems" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee_Problems">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employees_Branch">
+    <End Role="Branches" Type="Self.Branches" Multiplicity="0..1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branches">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="Branch_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employees_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_RBranch">
+    <End Role="Branches" Type="Self.Branches" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branches">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="Receiving_B_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_RUser">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="Receiving_Manager_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_SBranch">
+    <End Role="Branches" Type="Self.Branches" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branches">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="Sending_B_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_SUser">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="Sending_Manager_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FPK_Products_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="Customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CourierManagementSystemStoreContainer">
+    <EntitySet Name="Branches" EntityType="Self.Branches" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee_Problems" EntityType="Self.Employee_Problems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Customers_Users" Association="Self.FK_Customers_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Problems_Branch" Association="Self.FK_Employee_Problems_Branch">
+      <End Role="Branches" EntitySet="Branches" />
+      <End Role="Employee_Problems" EntitySet="Employee_Problems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Problems_Users" Association="Self.FK_Employee_Problems_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Employee_Problems" EntitySet="Employee_Problems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employees_Branch" Association="Self.FK_Employees_Branch">
+      <End Role="Branches" EntitySet="Branches" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employees_Users" Association="Self.FK_Employees_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_RBranch" Association="Self.FK_Products_RBranch">
+      <End Role="Branches" EntitySet="Branches" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_RUser" Association="Self.FK_Products_RUser">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_SBranch" Association="Self.FK_Products_SBranch">
+      <End Role="Branches" EntitySet="Branches" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_SUser" Association="Self.FK_Products_SUser">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FPK_Products_Customers" Association="Self.FPK_Products_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

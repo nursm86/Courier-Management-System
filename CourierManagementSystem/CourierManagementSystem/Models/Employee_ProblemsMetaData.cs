@@ -7,9 +7,8 @@ namespace CourierManagementSystem.Models
 {
     public class Employee_ProblemsMetaData
     {
-        public int Id { get; set; }
         public System.DateTime UpdatedDate { get; set; }
-        public int User_id { get; set; }
+        public int Id { get; set; }
         public int Branch_id { get; set; }
         public string Problem { get; set; }
 

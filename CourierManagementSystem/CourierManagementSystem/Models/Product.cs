@@ -35,8 +35,8 @@ namespace CourierManagementSystem.Models
     
         public virtual Branch Branch { get; set; }
         public virtual Branch Branch1 { get; set; }
-        public virtual User User { get; set; }
-        public virtual User User1 { get; set; }
-        public virtual User User2 { get; set; }
+        public virtual Customer Customer { get; set; }
+        public virtual Employee Employee { get; set; }
+        public virtual Employee Employee1 { get; set; }
     }
 }

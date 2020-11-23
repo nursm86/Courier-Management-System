@@ -13,10 +13,5 @@ namespace CourierManagementSystem.Repositories
         {
             return (int)Get(id).Branch_id;
         }
-
-        public Employee Get(int id)
-        {
-            return this.context.Set<Employee>().Where<Employee>(x => x.User_Id == id).FirstOrDefault();
-        }
     }
 }
