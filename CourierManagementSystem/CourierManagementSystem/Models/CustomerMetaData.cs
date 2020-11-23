@@ -13,6 +13,7 @@ namespace CourierManagementSystem.Models
         public string Sequrity_Que { get; set; }
         public System.DateTime UpdatedDate { get; set; }
         public int User_Id { get; set; }
+        public int id { get; set; }
 
         public virtual User User { get; set; }
     }

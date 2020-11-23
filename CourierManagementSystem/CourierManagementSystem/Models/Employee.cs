@@ -27,6 +27,7 @@ namespace CourierManagementSystem.Models
         public int User_Id { get; set; }
         public string Blood_Group { get; set; }
         public string Qualification { get; set; }
+        public int Id { get; set; }
     
         public virtual Branch Branch { get; set; }
         public virtual User User { get; set; }

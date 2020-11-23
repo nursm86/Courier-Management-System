@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<CourierManagementSystem.Models.Product>
 @{
     ViewBag.Title = "serviceHistory";
     Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
@@ -21,29 +21,52 @@
                     <td>Reciever Name</td>
                     <td>Address</td>
                     <td>Product State</td>
-                    <td></td>
                 </tr>
             </thead>
             <tbody>
-               <div class="col-md-8">
-                   <tr>
+                <div class="col-md-8">
+                    @foreach (var item in Model)
+                    {
+                        if (item.Sending_Manager_id == (int)Session["uid"])
+                        {
+                        <tr>
+                            <td>@item.Branch.Branch_Name</td>
+                            <td>@item.Branch1.Branch_Name</td>
 
-                    <td></td>
-                    <td></td>
+                            <td>@item.UpdatedDate</td>
 
-                    <td></td>
+                            <td>@item.RecieverName</td>
 
-                    <td></td>
-
-                    <td></td>
-                    <td></td>
-
-                    <td></td>
-
-                    <td><a href="/admin/cancel" class="btn btn-danger">Cancel</a></td>
-
-                </tr>
-            </tbody>
+                            <td>@item.RecieverAddress</td>
+                            @if (item.Product_State == 1)
+                            {
+                                <td>
+                                    Received
+                                </td>
+                            }
+                            else if (item.Product_State == 2)
+                            {
+                                <td>
+                                    Shipped
+                                </td>
+                            }
+                            else if (item.Product_State == 3)
+                            {
+                                <td>
+                                    Sent_to_destination
+                                </td>
+                            }
+                            else if (item.Product_State == 4)
+                            {
+                                <td>
+                                    Released
+                                </td>
+                            }
+                        </tr>
+                        }
+                    }
+                    </div>
+</tbody>
         </table>
     </div>
 </div>
@@ -70,15 +93,47 @@
         </thead>
         <tbody>
             <div class="col-md-8">
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                @foreach (var item in Model)
+                {
+                    if (item.Receiving_Manager_id == (int)Session["uid"])
+                    {
+                        <tr>
+                            <td>@item.Branch.Branch_Name</td>
+                            <td>@item.Branch1.Branch_Name</td>
+
+                            <td>@item.UpdatedDate</td>
+
+                            <td>@item.RecieverName</td>
+
+                            <td>@item.RecieverAddress</td>
+                            @if (item.Product_State == 1)
+                            {
+                                <td>
+                                    Received
+                                </td>
+                            }
+                            else if (item.Product_State == 2)
+                            {
+                                <td>
+                                    Shipped
+                                </td>
+                            }
+                            else if (item.Product_State == 3)
+                            {
+                                <td>
+                                    Sent_to_destination
+                                </td>
+                            }
+                            else if (item.Product_State == 4)
+                            {
+                                <td>
+                                    Released
+                                </td>
+                            }
+                        </tr>
+                    }
+                }
+            </div>
         </tbody>
     </table>
 

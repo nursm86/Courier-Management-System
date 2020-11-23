@@ -4,23 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="775c7945ae024f308afb2fa14b7a9834" Name="Diagram1">
-        <EntityTypeShape EntityType="CourierManagementSystemModel.Branch" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CourierManagementSystemModel.Employee_Problems" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CourierManagementSystemModel.Product" Width="1.5" PointX="6" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CourierManagementSystemModel.User" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="CourierManagementSystemModel.Customer" Width="1.5" PointX="3" PointY="17.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CourierManagementSystemModel.Employee" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <AssociationConnector Association="CourierManagementSystemModel.FK_Employee_Problems_Branches" ManuallyRouted="false" />
-        <AssociationConnector Association="CourierManagementSystemModel.FK_Employees_Branches" ManuallyRouted="false" />
-        <AssociationConnector Association="CourierManagementSystemModel.FK_Products_Branches" ManuallyRouted="false" />
-        <AssociationConnector Association="CourierManagementSystemModel.FK_Products_SBranches" ManuallyRouted="false" />
-        <AssociationConnector Association="CourierManagementSystemModel.FK_Employee_Problems_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="CourierManagementSystemModel.FK_Products_Customers" ManuallyRouted="false" />
-        <AssociationConnector Association="CourierManagementSystemModel.FK_Products_RManager" ManuallyRouted="false" />
-        <AssociationConnector Association="CourierManagementSystemModel.FK_Products_SManager" ManuallyRouted="false" />
-        <AssociationConnector Association="CourierManagementSystemModel.FK_Customers_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="CourierManagementSystemModel.FK_Employees_Users" ManuallyRouted="false" />
+      <Diagram DiagramId="b9473f83a08449c7b82ae76cc6ed8a7e" Name="Diagram1" ZoomLevel="109">
+        <EntityTypeShape EntityType="CourierManagementSystem.Branch" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourierManagementSystem.Customer" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourierManagementSystem.Employee_Problems" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourierManagementSystem.Employee" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourierManagementSystem.Product" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourierManagementSystem.User" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <AssociationConnector Association="CourierManagementSystem.FK_Employee_Problems_Branches" ManuallyRouted="false" />
+        <AssociationConnector Association="CourierManagementSystem.FK_Employees_Branches" ManuallyRouted="false" />
+        <AssociationConnector Association="CourierManagementSystem.FK_Products_Branches" ManuallyRouted="false" />
+        <AssociationConnector Association="CourierManagementSystem.FK_Products_SBranches" ManuallyRouted="false" />
+        <AssociationConnector Association="CourierManagementSystem.FK_Customers_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="CourierManagementSystem.FK_Employee_Problems_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="CourierManagementSystem.FK_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="CourierManagementSystem.FK_Products_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="CourierManagementSystem.FK_Products_RManager" ManuallyRouted="false" />
+        <AssociationConnector Association="CourierManagementSystem.FK_Products_SManager" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

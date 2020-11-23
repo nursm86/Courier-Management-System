@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<CourierManagementSystem.Models.Product>
 @{
     ViewBag.Title = "receivedProduct";
     Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
@@ -26,15 +26,25 @@
             </thead>
             <tbody>
                 <div class="col-md-8">
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><a href="receivefromCustomer/" class="btn btn-warning">View</a></td>
-                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.Sending_B_id == (int)TempData["bid"]  && item.Product_State == 0)
+                        {
+                            <tr>
+                                <td>@item.Branch.Branch_Name</td>
+                                <td>@item.Branch1.Branch_Name</td>
+
+                                <td>@item.UpdatedDate</td>
+
+                                <td>@item.RecieverName</td>
+
+                                <td>@item.RecieverAddress</td>
+                                <td>@item.RecieverContact</td>
+                                <td>@Html.ActionLink("View", "ViewProduct", new { id = item.Id}, new { @class = "btn btn-warning" })</td>
+                            </tr>
+                        }
+                    }
+                </div>
             </tbody>
         </table>
     </div>
@@ -63,15 +73,26 @@
         </thead>
         <tbody>
             <div class="col-md-8">
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><a href="receivefromBranch/" class="btn btn-warning">View</a></td>
-                </tr>
-        </tbody>
+                @foreach (var item in Model)
+                {
+                    if (item.Receiving_B_id == (int)TempData["bid"] && item.Product_State == 2)
+                    {
+                        <tr>
+                            <td>@item.Branch.Branch_Name</td>
+
+                            <td>@item.Branch1.Branch_Name</td>
+
+                            <td>@item.UpdatedDate</td>
+
+                            <td>@item.RecieverName</td>
+
+                            <td>@item.RecieverAddress</td>
+
+                            <td>@item.RecieverContact</td>
+                            <td>@Html.ActionLink("View", "ViewProduct", new { id = item.Id }, new { @class = "btn btn-warning" })</td>
+                        </tr>
+                    }
+                }
+</tbody>
     </table>
 </div>

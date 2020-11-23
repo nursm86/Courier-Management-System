@@ -96,6 +96,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\profile_pic\messi.jpg" />
+    <Content Include="Content\profile_pic\neymar.jpg" />
+    <Content Include="Content\profile_pic\ProfileImage.jpg" />
+    <Content Include="Content\profile_pic\ProfileImage1.jpg" />
+    <Content Include="Content\profile_pic\ProfileImage2.jpg" />
+    <Content Include="Content\profile_pic\ronaldo.jpg" />
     <Content Include="Content\styles\bootstrap.js" />
     <Content Include="Content\styles\bootstrap.min.css" />
     <Content Include="Content\styles\icons.js" />
@@ -136,9 +142,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\LogoutController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -228,6 +237,17 @@
     <Content Include="Views\Employee\viewCustomers.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\Registration.cshtml" />
+    <Content Include="Views\Admin\AddBranch.cshtml" />
+    <Content Include="Views\Admin\AddWorker.cshtml" />
+    <Content Include="Views\Admin\AdminProfile.cshtml" />
+    <Content Include="Views\Admin\AllBranch.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\SolveProblem.cshtml" />
+    <Content Include="Views\Admin\WorkerList.cshtml" />
+    <Content Include="Views\Shared\_admin.cshtml" />
+    <Content Include="Views\Employee\updateInfo.cshtml" />
+    <Content Include="Views\Employee\viewCustomer.cshtml" />
+    <Content Include="Views\Employee\ViewProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -238,7 +258,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\js\" />
-    <Folder Include="Views\Logout\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

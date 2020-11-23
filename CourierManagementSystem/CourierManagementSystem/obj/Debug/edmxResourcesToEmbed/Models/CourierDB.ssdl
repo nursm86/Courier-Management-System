@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="CourierManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="CourierManagementSystem.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Branches">
     <Key>
       <PropertyRef Name="Id" />
@@ -9,16 +9,9 @@
     <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="UpdatedDate" Type="datetime" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\PROGRAM FILES\MICROSOFT SQL SERVER\MSSQL15.SQLEXPRESS\MSSQL\DATA\COURIERMANAGEMENTSYSTEM.MDF.dbo.Customers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Customers">
     <Key>
-      <PropertyRef Name="Name" />
-      <PropertyRef Name="Contact" />
-      <PropertyRef Name="Address" />
-      <PropertyRef Name="Sequrity_Que" />
-      <PropertyRef Name="UpdatedDate" />
-      <PropertyRef Name="User_Id" />
+      <PropertyRef Name="id" />
     </Key>
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Contact" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -26,6 +19,7 @@ warning 6002: The table/view 'C:\PROGRAM FILES\MICROSOFT SQL SERVER\MSSQL15.SQLE
     <Property Name="Sequrity_Que" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Employee_Problems">
     <Key>
@@ -37,11 +31,9 @@ warning 6002: The table/view 'C:\PROGRAM FILES\MICROSOFT SQL SERVER\MSSQL15.SQLE
     <Property Name="Branch_id" Type="int" Nullable="false" />
     <Property Name="Problem" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\PROGRAM FILES\MICROSOFT SQL SERVER\MSSQL15.SQLEXPRESS\MSSQL\DATA\COURIERMANAGEMENTSYSTEM.MDF.dbo.Employees' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Employees">
     <Key>
-      <PropertyRef Name="User_Id" />
+      <PropertyRef Name="Id" />
     </Key>
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="Joining_date" Type="datetime" />
@@ -56,6 +48,7 @@ warning 6002: The table/view 'C:\PROGRAM FILES\MICROSOFT SQL SERVER\MSSQL15.SQLE
     <Property Name="User_Id" Type="int" Nullable="false" />
     <Property Name="Blood_Group" Type="nvarchar" MaxLength="10" />
     <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
+    <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Products">
     <Key>
@@ -90,7 +83,7 @@ warning 6002: The table/view 'C:\PROGRAM FILES\MICROSOFT SQL SERVER\MSSQL15.SQLE
     <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
     <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="UserType" Type="int" Nullable="false" />
-    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
     <Property Name="image" Type="nvarchar(max)" />
   </EntityType>
   <Association Name="FK_Customers_Users">
@@ -129,6 +122,18 @@ warning 6002: The table/view 'C:\PROGRAM FILES\MICROSOFT SQL SERVER\MSSQL15.SQLE
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Employees">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Employees_Branches">
     <End Role="Branches" Type="Self.Branches" Multiplicity="0..1" />
     <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
@@ -138,18 +143,6 @@ warning 6002: The table/view 'C:\PROGRAM FILES\MICROSOFT SQL SERVER\MSSQL15.SQLE
       </Principal>
       <Dependent Role="Employees">
         <PropertyRef Name="Branch_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Employees_Users">
-    <End Role="Users" Type="Self.Users" Multiplicity="1" />
-    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Employees">
-        <PropertyRef Name="User_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -213,38 +206,13 @@ warning 6002: The table/view 'C:\PROGRAM FILES\MICROSOFT SQL SERVER\MSSQL15.SQLE
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="CourierManagementSystemModelStoreContainer">
+  <EntityContainer Name="CourierManagementSystemStoreContainer">
     <EntitySet Name="Branches" EntityType="Self.Branches" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employee_Problems" EntityType="Self.Employee_Problems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Customers" EntityType="Self.Customers" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Customers].[Name] AS [Name], 
-    [Customers].[Contact] AS [Contact], 
-    [Customers].[Address] AS [Address], 
-    [Customers].[Sequrity_Que] AS [Sequrity_Que], 
-    [Customers].[UpdatedDate] AS [UpdatedDate], 
-    [Customers].[User_Id] AS [User_Id]
-    FROM [dbo].[Customers] AS [Customers]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="Employees" EntityType="Self.Employees" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Employees].[Name] AS [Name], 
-    [Employees].[Joining_date] AS [Joining_date], 
-    [Employees].[DOB] AS [DOB], 
-    [Employees].[Salary] AS [Salary], 
-    [Employees].[Bonus] AS [Bonus], 
-    [Employees].[Contact] AS [Contact], 
-    [Employees].[Address] AS [Address], 
-    [Employees].[Designation] AS [Designation], 
-    [Employees].[Branch_id] AS [Branch_id], 
-    [Employees].[UpdatedDate] AS [UpdatedDate], 
-    [Employees].[User_Id] AS [User_Id], 
-    [Employees].[Blood_Group] AS [Blood_Group], 
-    [Employees].[Qualification] AS [Qualification]
-    FROM [dbo].[Employees] AS [Employees]</DefiningQuery>
-    </EntitySet>
     <AssociationSet Name="FK_Customers_Users" Association="Self.FK_Customers_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="Customers" EntitySet="Customers" />
@@ -257,12 +225,12 @@ warning 6002: The table/view 'C:\PROGRAM FILES\MICROSOFT SQL SERVER\MSSQL15.SQLE
       <End Role="Users" EntitySet="Users" />
       <End Role="Employee_Problems" EntitySet="Employee_Problems" />
     </AssociationSet>
-    <AssociationSet Name="FK_Employees_Branches" Association="Self.FK_Employees_Branches">
-      <End Role="Branches" EntitySet="Branches" />
+    <AssociationSet Name="FK_Employees" Association="Self.FK_Employees">
+      <End Role="Users" EntitySet="Users" />
       <End Role="Employees" EntitySet="Employees" />
     </AssociationSet>
-    <AssociationSet Name="FK_Employees_Users" Association="Self.FK_Employees_Users">
-      <End Role="Users" EntitySet="Users" />
+    <AssociationSet Name="FK_Employees_Branches" Association="Self.FK_Employees_Branches">
+      <End Role="Branches" EntitySet="Branches" />
       <End Role="Employees" EntitySet="Employees" />
     </AssociationSet>
     <AssociationSet Name="FK_Products_Branches" Association="Self.FK_Products_Branches">

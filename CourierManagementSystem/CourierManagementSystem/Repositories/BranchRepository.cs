@@ -8,5 +8,6 @@ namespace CourierManagementSystem.Repositories
 {
     public class BranchRepository:Repository<Branch>
     {
+
     }
 }

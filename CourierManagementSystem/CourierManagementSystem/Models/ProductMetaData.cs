@@ -7,6 +7,36 @@ namespace CourierManagementSystem.Models
 {
     public class ProductMetaData
     {
+        public enum ProductTypeEnum
+        {
+            Extra_Large,
+            Large,
+            Medium,
+            Small
+        }
+        public enum ProductCategoryEnum
+        {
+            Document,
+            Package,
+            Accessories,
+            Electronics,
+            Groceries,
+            Others
+        }
+
+        public enum PaymentMethodEnum
+        {
+            Cash
+        }
+
+        public enum ProductStateEnum
+        {
+            Not_yet_Received,
+            Received,
+            Shipped,
+            Sent_to_destination,
+            Released
+        }
         public int Id { get; set; }
         public int ProductType { get; set; }
         public int Customer_id { get; set; }

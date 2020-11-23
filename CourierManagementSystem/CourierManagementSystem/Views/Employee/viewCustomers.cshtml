@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<CourierManagementSystem.Models.Customer>
+@{
     ViewBag.Title = "viewCustomers";
     Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
 }
@@ -38,13 +39,17 @@
             </thead>
             <tbody id="suggestion">
                 <div class="col-md-8">
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-            </tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.User.EmailAddress</td>
+                            <td>@item.Contact</td>
+                            <td>@item.Address</td>
+                            <td>@Html.ActionLink("View", "ViewCustomer", new { id = item.User_Id},new {@class = "btn btn-warning" })</td>
+                        </tr>
+                    }
+</tbody>
         </table>
     </div>
 </div>

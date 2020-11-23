@@ -12,7 +12,7 @@ namespace CourierManagementSystem.Controllers
         public ActionResult Index()
         {
             Session.Clear();
-            return RedirectToAction("login", "login");
+            return RedirectToAction("index", "login");
         }
     }
 }

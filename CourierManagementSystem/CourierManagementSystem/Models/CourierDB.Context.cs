@@ -16,7 +16,7 @@ namespace CourierManagementSystem.Models
     public partial class CourierManagement : DbContext
     {
         public CourierManagement()
-            : base("name=CourierManagementSystem")
+            : base("name=CourierManagement")
         {
         }
     
@@ -26,10 +26,10 @@ namespace CourierManagementSystem.Models
         }
     
         public virtual DbSet<Branch> Branches { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Employee_Problems> Employee_Problems { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<Employee> Employees { get; set; }
     }
 }

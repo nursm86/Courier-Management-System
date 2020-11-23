@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="CourierManagementSystemModelStoreContainer" CdmEntityContainer="CourierManagementSystem">
+  <EntityContainerMapping StorageEntityContainer="CourierManagementSystemStoreContainer" CdmEntityContainer="CourierManagement">
     <EntitySetMapping Name="Branches">
-      <EntityTypeMapping TypeName="CourierManagementSystemModel.Branch">
+      <EntityTypeMapping TypeName="CourierManagementSystem.Branch">
         <MappingFragment StoreEntitySet="Branches">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Branch_Name" ColumnName="Branch_Name" />
@@ -11,8 +11,21 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="CourierManagementSystem.Customer">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Sequrity_Que" ColumnName="Sequrity_Que" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Employee_Problems">
-      <EntityTypeMapping TypeName="CourierManagementSystemModel.Employee_Problems">
+      <EntityTypeMapping TypeName="CourierManagementSystem.Employee_Problems">
         <MappingFragment StoreEntitySet="Employee_Problems">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
@@ -22,8 +35,28 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="CourierManagementSystem.Employee">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Joining_date" ColumnName="Joining_date" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="Bonus" ColumnName="Bonus" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="Branch_id" ColumnName="Branch_id" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="Blood_Group" ColumnName="Blood_Group" />
+          <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Products">
-      <EntityTypeMapping TypeName="CourierManagementSystemModel.Product">
+      <EntityTypeMapping TypeName="CourierManagementSystem.Product">
         <MappingFragment StoreEntitySet="Products">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ProductType" ColumnName="ProductType" />
@@ -47,7 +80,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="CourierManagementSystemModel.User">
+      <EntityTypeMapping TypeName="CourierManagementSystem.User">
         <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -57,37 +90,6 @@
           <ScalarProperty Name="UserType" ColumnName="UserType" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="image" ColumnName="image" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Customers">
-      <EntityTypeMapping TypeName="CourierManagementSystemModel.Customer">
-        <MappingFragment StoreEntitySet="Customers">
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Contact" ColumnName="Contact" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="Sequrity_Que" ColumnName="Sequrity_Que" />
-          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
-          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Employees">
-      <EntityTypeMapping TypeName="CourierManagementSystemModel.Employee">
-        <MappingFragment StoreEntitySet="Employees">
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Joining_date" ColumnName="Joining_date" />
-          <ScalarProperty Name="DOB" ColumnName="DOB" />
-          <ScalarProperty Name="Salary" ColumnName="Salary" />
-          <ScalarProperty Name="Bonus" ColumnName="Bonus" />
-          <ScalarProperty Name="Contact" ColumnName="Contact" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="Designation" ColumnName="Designation" />
-          <ScalarProperty Name="Branch_id" ColumnName="Branch_id" />
-          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
-          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
-          <ScalarProperty Name="Blood_Group" ColumnName="Blood_Group" />
-          <ScalarProperty Name="Qualification" ColumnName="Qualification" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
