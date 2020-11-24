@@ -18,5 +18,12 @@ namespace CourierManagementSystem.Repositories
             }
             return customers;
         }
+
+        public void UpdateCutomer(Customer c)
+        {
+            Customer nc = Get(c.Id);
+            nc = c;
+            this.context.SaveChanges();
+        }
     }
 }

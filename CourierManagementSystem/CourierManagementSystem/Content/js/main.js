@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	$('#search').on("keyup",function () {
+	$('#search').on("keyup", function () {
 		var search = $("#search").val();
 		var searchby = $("#searchby").val();
 		var see = $('#see').val();

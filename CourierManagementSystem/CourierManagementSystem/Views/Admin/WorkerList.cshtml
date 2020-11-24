@@ -1,66 +1,92 @@
-﻿
+﻿@model IEnumerable<CourierManagementSystem.Models.Employee>
 @{
     ViewBag.Title = "WorkerList";
     Layout = "~/Views/Shared/_admin.cshtml";
 }
 
-    <div class="donorlist">
+<div class="donorlist">
 
-        <h1 class="text-white bg-dark text-center">
-            All Worker
-        </h1><br>
-        <div class="row">
+    <h1 class="text-white bg-dark text-center">
+        All Worker
+    </h1><br>
+    <div class="row">
 
-            <div class="col-md-2">
-                <div class="form-group">
+        <div class="col-md-2">
+            <div class="form-group">
 
-                    <select class="form-control" name="accountType" id="type">
-                        <option value="" disabled selected>Show</option>
-                        <option value="*">All</option>
-                        <option value="0">Manager</option>
-                        <option value="1">Driver</option>
-                        <option value="2">Delivery boy</option>
-                        <option value="3">Worker</option>
-                    </select>
-                </div>
+                <select class="form-control" name="see" id="see">
+                    <option value="">All</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Driver">Driver</option>
+                    <option value="Delivery boy">Delivery boy</option>
+                    <option value="Worker">Worker</option>
+                </select>
             </div>
-
-            <div class="col-md-2">
-                <div class="form-group">
-
-                    <select class="form-control" name="accountType" id="searchBy">
-                        <option value="" disabled selected>Search By</option>
-                        <option value="Name">Name</option>
-                        <option value="ContactNo">Contact</option>
-                        <option value="Address">Address</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-8 donor">
-                <input type="text" name="" id="search_text" placeholder="Search Customers " onkeyup="search()">
-            </div>
-        </div><br>
-
-        <div class="row ">
-
-
-            <table class="table" id="myTable">
-                <thead>
-                    <tr>
-                        <td>Name</td>
-                        <td>Email Address</td>
-                        <td>Contact No</td>
-                        <td>Address</td>
-                        <td>Designation</td>
-                        <td>Qualification</td>
-                        <td></td>
-                    </tr>
-                </thead>
-                <tbody id="suggestion">
-                    <div class="col-md-8">
-                       
-                </tbody>
-            </table>
         </div>
+
+        <div class="col-md-2">
+            <div class="form-group">
+
+                <select class="form-control" name="searchby" id="searchby">
+                    <option value="1" disabled selected>Search By</option>
+                    <option value="1">Name</option>
+                    <option value="2">Email</option>
+                    <option value="3">Contact</option>
+                    <option value="4">Address</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-8 donor">
+            <input type="text" name="search" id="search" placeholder="Search Customers">
+        </div>
+    </div><br>
+
+    <div class="row ">
+
+
+        <table class="table" id="myTable">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Email Address</td>
+                    <td>Contact No</td>
+                    <td>Address</td>
+                    <td>Designation</td>
+                    <td>Qualification</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody id="suggestion">
+                <div class="col-md-8">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.User.EmailAddress</td>
+                            <td>@item.Contact</td>
+                            <td>@item.Address</td>
+                            @if(item.Designation == 0)
+                            {
+                                <td>Manager</td>
+                            }
+                            else if(item.Designation == 1){
+                                <td>Worker</td>
+                            }
+                            else if(item.Designation == 2)
+                            {
+                                <td>Delivery Boy</td>
+                            }
+                            else
+                            {
+                                <td>Driver</td>
+                            }
+                            <td></td>
+                            <td>@item.Qualification</td>
+                            <td>@Html.ActionLink("View", "ViewWorker", new { id = item.Id }, new { @class = "btn btn-warning" })</td>
+                        </tr>       
+                     }
+                    </tbody>
+                </table>
     </div>
+</div>
 

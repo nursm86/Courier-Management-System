@@ -155,18 +155,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Products_RUser">
-    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
-    <End Role="Products" Type="Self.Products" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Employees">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Products">
-        <PropertyRef Name="Receiving_Manager_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Products_SBranch">
     <End Role="Branches" Type="Self.Branches" Multiplicity="1" />
     <End Role="Products" Type="Self.Products" Multiplicity="*" />
@@ -176,18 +164,6 @@
       </Principal>
       <Dependent Role="Products">
         <PropertyRef Name="Sending_B_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Products_SUser">
-    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
-    <End Role="Products" Type="Self.Products" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Employees">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Products">
-        <PropertyRef Name="Sending_Manager_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -234,16 +210,8 @@
       <End Role="Branches" EntitySet="Branches" />
       <End Role="Products" EntitySet="Products" />
     </AssociationSet>
-    <AssociationSet Name="FK_Products_RUser" Association="Self.FK_Products_RUser">
-      <End Role="Employees" EntitySet="Employees" />
-      <End Role="Products" EntitySet="Products" />
-    </AssociationSet>
     <AssociationSet Name="FK_Products_SBranch" Association="Self.FK_Products_SBranch">
       <End Role="Branches" EntitySet="Branches" />
-      <End Role="Products" EntitySet="Products" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Products_SUser" Association="Self.FK_Products_SUser">
-      <End Role="Employees" EntitySet="Employees" />
       <End Role="Products" EntitySet="Products" />
     </AssociationSet>
     <AssociationSet Name="FPK_Products_Customers" Association="Self.FPK_Products_Customers">

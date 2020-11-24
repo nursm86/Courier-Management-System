@@ -249,6 +249,10 @@
     <Content Include="Views\Employee\updateInfo.cshtml" />
     <Content Include="Views\Employee\viewCustomer.cshtml" />
     <Content Include="Views\Employee\ViewProduct.cshtml" />
+    <Content Include="Views\Admin\ViewBranch.cshtml" />
+    <Content Include="Views\Admin\ViewWorker.cshtml" />
+    <Content Include="Views\Admin\ViewProblem.cshtml" />
+    <Content Include="Views\Customer\CustTermCondition.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

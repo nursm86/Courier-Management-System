@@ -1,24 +1,25 @@
-﻿
+﻿@model CourierManagementSystem.Models.Customer
 @{
-    ViewBag.Title = "Profile";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_customer.cshtml";
 }
+
 
 <div class="patientprofile">
     <div class="row">
         <div class="col-md-4 box">
             <div class="well">
-                <img src="~/Content/system_image/ronaldo.jpg" class="doc-img">
+                <img src="@Model.User.image" class="doc-img">
                 <div class="btn-group">
 
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editimage"><i class="fa fa-picture-o"></i></button>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editpass"><i class="fa fa-key"></i></button>
                 </div>
-                <h3>Nayeem</h3>
+                <h3>@Model.Name</h3>
+                <h3 style="color:red">@TempData["errmsg"]</h3>
                 <p></p>
             </div>
         </div>
-
 
         <div class="col-md-8 box">
             <h1 class="text-white bg-dark text-center">
@@ -32,7 +33,7 @@
 
                         <td class="tdattribute">Name</td>
                         <td>:</td>
-                        <td>Md. Nayeem apa</td>
+                        <td>@Model.Name</td>
 
                     </tr>
 
@@ -40,7 +41,7 @@
 
                         <td class="tdattribute">Email</td>
                         <td>:</td>
-                        <td>nayeem@gmail.com</td>
+                        <td>@Model.User.EmailAddress</td>
 
                     </tr>
 
@@ -48,13 +49,13 @@
 
                         <td class="tdattribute">Phone Number</td>
                         <td>:</td>
-                        <td>01622114901</td>
+                        <td>@Model.Contact</td>
 
                     </tr>
                     <tr>
                         <td class="tdattribute">Address</td>
                         <td>:</td>
-                        <td>Dhalpur, Jatrabari</td>
+                        <td>@Model.Address</td>
 
                     </tr>
                 </tbody>
@@ -78,7 +79,7 @@
                         <div class="form-group ">
                             <!-- <img src="../images/placeholder.png" onclick="triggerClick()" id="profileDisplay"><br> -->
                             <label for="file">Image</label>
-                            <input type="file" name="file" id="file" value="<?php echo $file; ?>" class="form-control">
+                            <input type="file" name="file" id="file" value="" class="form-control">
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -101,15 +102,22 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="POST">
+                    <form action="customer/updatePassword" method="POST">
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.User.UserName)
+                        @Html.HiddenFor(model => model.User.EmailAddress)
+                        @Html.HiddenFor(model => model.UpdatedDate)
+                        @Html.HiddenFor(model => model.User.UserType)
+                        @Html.HiddenFor(model => model.User.Status)
+                        @Html.HiddenFor(model => model.User.image)
                         <div class="form-group">
                             <label for="pass">Current Password</label>
-                            <input type="password" class="form-control" name="pass">
+                            <input type="password" class="form-control" name="currentPass">
                             <span style="color:red;"></span>
                         </div>
                         <div class="form-group">
                             <label for="npass">New Password</label>
-                            <input type="password" class="form-control" name="npass">
+                            <input type="password" class="form-control" name="password">
                             <span style="color:red;"></span>
                         </div>
                         <div class="form-group">
@@ -118,7 +126,7 @@
                             <span style="color:red;"></span>
                         </div>
 
-                </div>
+</div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary" name="passUpdate">Update</button>
@@ -141,27 +149,27 @@
                     <form action="" method="POST">
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" class="form-control" name="name" value="">
+                            <input type="text" class="form-control" name="name" value="@Model.Name">
                             <span style="color:red;"></span>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="text" class="form-control" name="email" value="">
+                            <input type="text" class="form-control" name="emailAddress" value="@Model.User.EmailAddress">
                             <span style="color:red;"></span>
                         </div>
                         <div class="form-group">
                             <label>Phone No:</label>
-                            <input type="text" class="form-control" name="phone" value="">
+                            <input type="text" class="form-control" name="contact" value="@Model.Contact">
                             <span style="color:red;"></span>
                         </div>
                         <div class="form-group">
                             <label>Address</label>
-                            <input type="text" class="form-control" name="address" value="">
+                            <input type="text" class="form-control" name="address" value="@Model.Address">
                             <span style="color:red;"></span>
                         </div>
                         <div class="form-group">
                             <label>Security Que</label>
-                            <input type="text" class="form-control" name="sq" value="">
+                            <input type="text" class="form-control" name="Sequrity_Que" value="@Model.Sequrity_Que">
                             <span style="color:red;"></span>
                         </div>
 

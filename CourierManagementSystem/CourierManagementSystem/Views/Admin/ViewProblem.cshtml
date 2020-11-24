@@ -1,30 +1,30 @@
-﻿
+﻿@model CourierManagementSystem.Models.Employee_Problems
 @{
-    ViewBag.Title = "AddBranch";
+    ViewBag.Title = "ViewProblem";
     Layout = "~/Views/Shared/_admin.cshtml";
 }
 
-<h2></h2>
 <div class="patientprofile">
     <div class="d-flex justify-content-center align-items-center container ">
         <div class="col-md-8 donor">
             <h1 class="text-white bg-dark text-center">
-                Add New Branch
+                View Problem Details
             </h1>
             <form action="" method="post">
                 <div class="form-group">
-                    <label>Branch Name:</label>
-                    <input type="text" class="form-control" name="Branch_name" value="">
+                    <label>@Model.Problem</label>
                 </div>
                 <div class="form-group">
-                    <label>Address:</label>
-                    <input type="text" class="form-control" name="Address" value="">
+                    <label>Solve the problem Now?:</label>
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-primary" name="addnewebranch" value="Add New Branch">
+                    <a href="/admin/solveproblem" class="btn btn-warning">Cancel</a>
+                    <input type="submit" class="btn btn-danger" value="Delete" name="delete" id="">
+                    <input type="submit" class="btn btn-success" value="Yes" name="yes" id="">
                 </div>
             </form>
         </div>
     </div>
+</div>
 </div>
 

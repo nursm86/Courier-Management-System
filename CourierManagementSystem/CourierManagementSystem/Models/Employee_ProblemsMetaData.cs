@@ -11,7 +11,6 @@ namespace CourierManagementSystem.Models
         public int Id { get; set; }
         public int Branch_id { get; set; }
         public string Problem { get; set; }
-
         public virtual Branch Branch { get; set; }
         public virtual User User { get; set; }
     }

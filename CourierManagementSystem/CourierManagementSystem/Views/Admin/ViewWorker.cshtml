@@ -1,0 +1,70 @@
+﻿@model CourierManagementSystem.Models.Employee
+@{
+    var selected = "selected";
+    ViewBag.Title = "ViewWorker";
+    Layout = "~/Views/Shared/_admin.cshtml";
+}
+
+<div class="d-flex justify-content-center align-items-center container ">
+    <div class="col-md-8 box">
+        <h1 class="text-white bg-dark text-center">
+            Employee's Information
+        </h1>
+        <form action="" method="post">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" class="form-control" name="name" value="@Model.Name" required>
+                <span style="color:red;"></span>
+            </div>
+            <div class="form-group">
+                <label>Designation:</label>
+                <select style="border-radius: 5px;" class="form-control" name="designation">
+                    <option hidden>Select a Designation</option>
+                    <option @if (Model.Designation == 0) { @selected } value="0">Manager</option>
+
+                    <option @if (Model.Designation == 1) { @selected } value="1">Worker</option>
+
+                    <option @if (Model.Designation == 2) { @selected } value="2">Delivery Boy</option>
+
+                    <option @if (Model.Designation == 3) { @selected } value="3">Driver</option>
+
+                </select>
+
+                <span style="color:red;"></span>
+
+
+            </div>
+
+            <div class="form-group">
+                <label>Branch:</label>
+
+                <select class="form-control" name="Branch_id">
+                    <option selected hidden>Select Branch</option>
+                    @foreach (var item in ViewData["Branches"] as List<CourierManagementSystem.Models.Branch>)
+                    {
+                        <option @if (Model.Branch_id == item.Id) { @selected } value="@item.Id">@item.Branch_Name</option>
+                    }
+                </select><br>
+                <span style="color:red;"></span>
+            </div>
+            <div class="form-group">
+                <label>Salary:</label>
+                <input type="text" class="form-control" name="salary" value="@Model.Salary" required>
+                <span style="color:red;"></span>
+            </div>
+            <div class="form-group">
+                <label>Bonus:</label>
+                <input type="text" class="form-control" name="bonus" value="@Model.Bonus" required>
+                <span style="color:red;"></span>
+            </div>
+            <div class="form-group">
+                <label class="text-white bg-dark text-center">Update Branch?</label>
+            </div>
+            <div class="form-group">
+                <a href="/admin/workerList" class="btn btn-danger">Cancel</a>
+                <input type="submit" class="btn btn-success" value="Update" name="updated" id="">
+            </div>
+        </form>
+    </div>
+</div>
+

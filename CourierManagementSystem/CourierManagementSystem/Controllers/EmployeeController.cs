@@ -14,6 +14,7 @@ namespace CourierManagementSystem.Controllers
         EmployeeRepository empRepo = new EmployeeRepository();
         CustomerRepository cusRepo = new CustomerRepository();
         ProductRepository proRepo = new ProductRepository();
+        Employee_ProblemRepository epRepo = new Employee_ProblemRepository();
         [HttpGet]
         public ActionResult Index()
         {
@@ -37,6 +38,13 @@ namespace CourierManagementSystem.Controllers
             Employee user = empRepo.Get(id);
             user.User = userRepo.Get(user.Id);
             return View(user);
+        }
+
+        [HttpPost]
+        public new ActionResult Profile(Employee e)
+        {
+            empRepo.Update(e);
+            return RedirectToAction("profile");
         }
         [HttpGet]
         public ActionResult serviceHistory()
@@ -86,7 +94,6 @@ namespace CourierManagementSystem.Controllers
         [HttpPost]
         public ActionResult createnewCustomer(User u,Customer c)
         {
-            u.Status = 1;
             userRepo.insertUser(u, c);
             return RedirectToAction("viewCustomers");
         }
@@ -118,14 +125,16 @@ namespace CourierManagementSystem.Controllers
         [HttpGet]
         public ActionResult receiveProductfromCustomer(int id)
         {
-            proRepo.receieveFromCustomer(id);
+            int mid = (int)Session["uid"];
+            proRepo.receieveFromCustomer(id,mid);
             return RedirectToAction("receivedProduct");
         }
 
         [HttpGet]
         public ActionResult receiveProductfromBranch(int id)
         {
-            proRepo.receieveFromBranch(id);
+            int mid = (int)Session["uid"];
+            proRepo.receieveFromBranch(id,mid);
             return RedirectToAction("receivedProduct");
         }
 
@@ -147,6 +156,13 @@ namespace CourierManagementSystem.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult helpline(Employee_Problems ep)
+        {
+            int id = (int)Session["uid"];
+            epRepo.UpdateProblem(id, ep);
+            return View();
+        }
         [HttpGet]
         public ActionResult terms()
         {
@@ -156,6 +172,14 @@ namespace CourierManagementSystem.Controllers
         public ActionResult updateInfo()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult updateInfo(Employee e)
+        {
+            e.Id = (int)Session["uid"];
+            empRepo.UpdateEmployee(e);
+            return RedirectToAction("index");
         }
 
         [HttpPost]

@@ -12,17 +12,16 @@
 <div class="row">
     <div class="col-md-2">
         <div class="form-group">
-
-            <select class="form-control" name="accountType" id="searchBy">
-                <option value="" disabled selected>Search By</option>
-                <option value="ReceiverName">Name</option>
-                <option value="ReceiverContact">Contact</option>
-                <option value="ReceiverAddress">Address</option>
+            <select class="form-control" name="searchby" id="searchby">
+                <option value="4" disabled>Search By</option>
+                <option value="4">Receiever Name</option>
+                <option value="5">Receiver Contact</option>
             </select>
         </div>
     </div>
     <div class="col-md-8 donor">
-        <input type="text" name="" id="search_text" placeholder="Search Customers " onkeyup="search()">
+        <input type="text" value="" id="see" hidden/>
+        <input type="text" name="search" id="search" placeholder="Search Customers ">
     </div>
 </div>
 <br>
@@ -42,40 +41,25 @@
         </thead>
         <tbody id="suggestion">
             <div class="col-md-8">
-                <tr>
-                    <td>Pen</td>
-                    <td>Pen</td>
-                    <td>18/65/2200</td>
-                    <td>Pen</td>
-                    <td>Motijheel</td>
-                    <td>18/65/2200</td>
-                </tr>
+                @foreach (var item in Model)
+                {
+                    if ((item.Product_State == 4) && item.Customer_id == (int)Session["uid"])
+                    {
+                        <tr>
+                            <td>@item.Branch.Branch_Name</td>
+                            <td>@item.Branch1.Branch_Name</td>
+                            <td>@item.UpdatedDate</td>
+                            <td>@item.RecieverName</td>
+                            <td>@item.RecieverAddress</td>
+                            @if (item.Product_State == 4)
+                            {
+                                <td>Released</td>
+                            }
+                        </tr>
+                    }
+                }
             </div>
         </tbody>
     </table>
 </div>
-
-
-<script>
-	function get(id){
-		return document.getElementById(id);
-	}
-	function search(){
-		var text = get("search_text").value;
-        var text2 = get("searchBy").value;
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange=function(){
-			if(this.readyState == 4 && this.status == 200 ){
-				document.getElementById("suggestion").innerHTML = this.responseText;
-			}
-		};
-		if(text){
-			xhttp.open("GET","searchChistory.php?key="+text+"&key2="+text2,true);
-            xhttp.send();
-		}
-		else{
-			document.getElementById("suggestion").innerHTML="";
-		}
-	}
-</script>
 

@@ -1,22 +1,21 @@
-﻿
+﻿@model CourierManagementSystem.Models.User 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_admin.cshtml";
 }
 
-<h2>Index</h2>
-
 <div class="patientprofile">
     <div class="row">
         <div class="col-md-4 box">
             <div class="well">
-                <img src="" class="doc-img">
+                <img src="@Model.image" class="doc-img">
                 <div class="btn-group">
 
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editimage"><i class="fa fa-picture-o"></i></button>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editpass"><i class="fa fa-key"></i></button>
                 </div>
-                <h3>Nayem</h3>
+                <h3>@Model.UserName</h3>
+                <h3 style="color:red">@TempData["errmsg"]</h3>
                 <p></p>
             </div>
         </div>
@@ -30,13 +29,12 @@
                     <tr>
 
                         <td>Username</td>
-                        <td> Nur</td>
-
+                        <td>@Model.UserName</td>
                     </tr>
                     <tr>
 
                         <td>Email</td>
-                        <td>dkf@gmail.com</td>
+                        <td>@Model.EmailAddress</td>
 
                     </tr>
 
@@ -55,7 +53,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action=" " method="POST">
+                    <form action="admin/updatePassword" method="POST">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Picture</label>
                             <input type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -84,20 +82,30 @@
                 </div>
 
                 <div class="modal-body">
-                    <form action="" method="POST">
+                    <form action="/admin/updatePassword" method="POST">
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.UserName)
+                        @Html.HiddenFor(model => model.EmailAddress)
+                        @Html.HiddenFor(model => model.UpdatedDate)
+                        @Html.HiddenFor(model => model.UserType)
+                        @Html.HiddenFor(model => model.Status)
+                        @Html.HiddenFor(model => model.image)
                         <div class="form-group">
                             <label for="pass">Current Password</label>
-                            <input type="password" class="form-control" name="pass">
+                            <input type="password" class="form-control" name="currentPass">
+                            <span style="color:red;"></span>
                         </div>
                         <div class="form-group">
-                            <label for="npassw">New Password</label>
-                            <input type="password" class="form-control" name="npass">
+                            <label for="npass">New Password</label>
+                            <input type="password" class="form-control" name="password">
+                            <span style="color:red;"></span>
                         </div>
                         <div class="form-group">
                             <label for="cPass">Confirm Password</label>
                             <input type="password" class="form-control" name="cPass">
+                            <span style="color:red;"></span>
                         </div>
-                </div>
+</div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

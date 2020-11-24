@@ -56,9 +56,10 @@ namespace CourierManagementSystem.Repositories
             return products;
         }
 
-        public void receieveFromCustomer(int id)
+        public void receieveFromCustomer(int id,int mid)
         {
             Product p = Get(id);
+            p.Sending_Manager_id = mid;
             p.Product_State = 1;
             Update(p);
         }
@@ -68,17 +69,26 @@ namespace CourierManagementSystem.Repositories
             p.Product_State = 2;
             Update(p);
         }
-        public void receieveFromBranch(int id)
+        public void receieveFromBranch(int id,int mid)
         {
             Product p = Get(id);
+            p.Receiving_Manager_id = mid;
             p.Product_State = 3;
             Update(p);
         }
         public void releaseProduct(int id)
         {
             Product p = Get(id);
+            p.Release_Date = DateTime.Now;
             p.Product_State = 4;
             Update(p);
+        }
+
+        public void insertProduct(Product p)
+        {
+            p.UpdatedDate = DateTime.Now;
+            this.context.Products.Add(p);
+            this.context.SaveChanges();
         }
     }
 }

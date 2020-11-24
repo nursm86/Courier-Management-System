@@ -26,7 +26,10 @@ namespace CourierManagementSystem.Models
 
         public enum PaymentMethodEnum
         {
-            Cash
+            Bkash,
+            Rocket,
+            Nexus,
+            Cash_on_Delivery
         }
 
         public enum ProductStateEnum

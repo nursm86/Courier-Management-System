@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<CourierManagementSystem.Models.Branch>
 @{
     ViewBag.Title = "CustNewOrder";
     Layout = "~/Views/Shared/_customer.cshtml";
@@ -16,26 +16,24 @@
             <form action="" method="post">
                 <table>
 
-                    <select class="form-control" name="category">
+                    <select class="form-control" name="ProductCategory">
                         <option selected hidden>Select a Category</option>
-                        <option value="0">Electronics</option>
-                        <option value="1">Mobiles</option>
+                        <option value="0">Document</option>
+                        <option value="1">Package</option>
                         <option value="2">Accessories</option>
-                        <option value="3">Papers</option>
+                        <option value="3">Electronics</option>
+                        <option value="3">Groceries</option>
+                        <option value="3">Others</option>
                     </select>
                     <br>
 
 
                     <input type="textarea" class="form-control" name="description" placeholder="Describe the product" required>
                     <br>
-
-
-
-                    <input type="text" class="form-control" name="quantity" placeholder="Quantity" required>
                     <br>
 
 
-                    <select class="form-control" name="pmethod">
+                    <select class="form-control" name="paymentmethod">
                         <option selected hidden>Select Payment Method</option>
                         <option value="0">Bkash</option>
                         <option value="1">Rocket</option>
@@ -44,7 +42,7 @@
                     </select>
                     <br>
 
-                    <select class="form-control" name="size">
+                    <select class="form-control" name="productType">
                         <option selected hidden>Select size</option>
                         <option value="0">Extra Large</option>
                         <option value="1">Large</option>
@@ -54,42 +52,47 @@
                     <br>
 
 
-                    <select class="form-control" name="sbid">
+                    <select id="sid" class="form-control" name="sending_B_id">
                         <option selected hidden>Select Sending Branch</option>
-
-                        <option value='".$branch[' Id']."'>".$branch["Branch_Name"]."</option>
+                        @foreach (var item in Model)
+                        {
+                            <option value="@item.Id">@item.Branch_Name</option>
+                        }
                     </select>
                     <br>
 
                     <h2>Receiver Information</h2>
 
 
-                    <input type="text" class="form-control" name="rname" ; placeholder="Full Name" required>
+                    <input type="text" class="form-control" name="RecieverName" ; placeholder="Full Name" required>
                     <br>
 
 
 
 
-                    <input type="text" class="form-control" name="rcontact" placeholder="Contact Number" required>
+                    <input type="text" class="form-control" name="RecieverContact" placeholder="Contact Number" required>
                     <br>
 
 
 
 
-                    <input type="text" class="form-control" name="email" placeholder="Email">
+                    <input type="text" class="form-control" name="RecieverEmail" placeholder="Email">
                     <br>
 
 
 
 
-                    <input type="text" class="form-control" name="raddress" placeholder="Address" required>
+                    <input type="text" class="form-control" name="RecieverAddress" placeholder="Address" required>
                     <br>
 
 
 
-                    <select class="form-control" name="rbid">
+                    <select class="form-control" name="Receiving_B_id">
                         <option selected hidden>Select Receiving Branch</option>
-                        <option value='".$branch[' Id']."'>".$branch["Branch_Name"]."</option>
+                        @foreach (var item in Model)
+                        {
+                            <option value="@item.Id">@item.Branch_Name</option>
+                        }
                     </select>
                     <br>
 
@@ -100,4 +103,3 @@
         </div>
     </div>
 </div>
-

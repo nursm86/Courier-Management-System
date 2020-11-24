@@ -1,46 +1,54 @@
-﻿
-
+﻿@model IEnumerable<CourierManagementSystem.Models.Branch>
 @{
     ViewBag.Title = "AllBranch";
     Layout = "~/Views/Shared/_admin.cshtml";
 }
-    <div class="donorlist">
+<div class="donorlist">
 
-        <h1 class="text-white bg-dark text-center">
-            All Branches
-        </h1><br>
-        <div class="row">
-            <div class="col-md-2">
-                <div class="form-group">
+    <h1 class="text-white bg-dark text-center">
+        All Branches
+    </h1><br>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
 
-                    <select class="form-control" name="accountType" id="searchBy">
-                        <option value="" disabled selected>Search By</option>
-                        <option value="Branch_Name">Name</option>
-                        <option value="Address">Address</option>
-                    </select>
-                </div>
+                <select class="form-control" name="searchby" id="searchby">
+                    <option value="1" disabled selected>Search By</option>
+                    <option value="1">Name</option>
+                    <option value="2">Address</option>
+                </select>
             </div>
-            <div class="col-md-8 donor">
-                <input type="text" name="" id="search_text" placeholder="Search Branchhes" onkeyup="search()">
-            </div>
-        </div><br>
-
-        <div class="row ">
-
-            <table class="table" id="myTable">
-                <thead>
-                    <tr>
-                        <td>Branch Name</td>
-                        <td>Address</td>
-                        <td>Updated Date</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </thead>
-                <tbody id="suggestion">
-                    <div class="col-md-8">
-                       
-                </tbody>
-            </table>
         </div>
+        <div class="col-md-8 donor">
+            <input type="text" value="" id="see" hidden/>
+            <input type="text" name="search" id="search" placeholder="Search Branchhes">
+        </div>
+    </div><br>
+
+    <div class="row ">
+
+        <table class="table" id="myTable">
+            <thead>
+                <tr>
+                    <td>Branch Name</td>
+                    <td>Address</td>
+                    <td>Updated Date</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody id="suggestion">
+                <div class="col-md-8">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Branch_Name</td>
+                            <td>@item.Address</td>
+                            <td>@item.UpdatedDate</td>
+                            <td>@Html.ActionLink("View", "ViewBranch", new { id = item.Id }, new { @class = "btn btn-warning" })</td>
+                        </tr>
+                    }
+            </tbody>
+        </table>
     </div>
+</div>
