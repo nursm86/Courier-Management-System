@@ -15,11 +15,15 @@ namespace CourierManagementSystem.Controllers
         CustomerRepository cusRepo = new CustomerRepository();
         ProductRepository proRepo = new ProductRepository();
         Employee_ProblemRepository epRepo = new Employee_ProblemRepository();
-        Validator v = new Validator();
         [HttpGet]
         public ActionResult Index()
         {
-            int id = (int)Session["uid"];
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
+            int id = Convert.ToInt32(Session["uid"]);
             Employee user = empRepo.Get(id);
             user.User = userRepo.Get(user.Id);
             return View(user);
@@ -29,13 +33,23 @@ namespace CourierManagementSystem.Controllers
         [HttpPost]
         public ActionResult Index(Employee e)
         {
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
             empRepo.Update(e);
             return RedirectToAction("profile");
         }
         [HttpGet]
         public new ActionResult Profile()
         {
-            int id = (int)Session["uid"];
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
+            int id = Convert.ToInt32(Session["uid"]);
             Employee user = empRepo.Get(id);
             user.User = userRepo.Get(user.Id);
             return View(user);
@@ -44,23 +58,43 @@ namespace CourierManagementSystem.Controllers
         [HttpPost]
         public new ActionResult Profile(Employee e)
         {
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
             empRepo.Update(e);
             return RedirectToAction("profile");
         }
         [HttpGet]
         public ActionResult serviceHistory()
         {
-            int id = (int)Session["uid"];
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
+            int id = Convert.ToInt32(Session["uid"]);
             return View(proRepo.serviceHistory(id));
         }
         [HttpGet]
         public ActionResult viewCustomers()
         {
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
             return View(cusRepo.getAllCustomer());
         }
         [HttpGet]
         public ActionResult viewCustomer(int id)
         {
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
             Customer customer = cusRepo.Get(id);
             customer.User = userRepo.Get(id);
             return View(customer);
@@ -68,6 +102,11 @@ namespace CourierManagementSystem.Controllers
         [HttpGet]
         public ActionResult VerifyCustomer(int id)
         {
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
             userRepo.verifyUser(id);
             return RedirectToAction("viewCustomers");
         }
@@ -75,6 +114,11 @@ namespace CourierManagementSystem.Controllers
         [HttpGet]
         public ActionResult BlockCustomer(int id)
         {
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
             userRepo.blockUser(id);
             return RedirectToAction("viewCustomers");
         }
@@ -82,6 +126,11 @@ namespace CourierManagementSystem.Controllers
         [HttpGet]
         public ActionResult UnBlockCustomer(int id)
         {
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
             userRepo.UnblockUser(id);
             return RedirectToAction("viewCustomers");
         }
@@ -89,54 +138,83 @@ namespace CourierManagementSystem.Controllers
         [HttpGet]
         public ActionResult createnewCustomer()
         {
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
             return View();
         }
 
         [HttpPost]
         public ActionResult createnewCustomer(User u,Customer c)
         {
-            if(v.validate(u) != null)
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
             {
-                u.Status = 1;
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
+            if (ModelState.IsValid)
+            {
                 userRepo.insertUser(u, c);
                 return RedirectToAction("viewCustomers");
             }
-            else
-            {
-                TempData["errmsg"] = v.validate(u);
-                return RedirectToAction("createnewCustomer");
-            }
-            
+            return View();
         }
         [HttpGet]
         public ActionResult receivedProduct()
         {
-            int id = (int)Session["uid"];
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
+            int id = Convert.ToInt32(Session["uid"]);
             TempData["bid"] = empRepo.getBranchId(id);
             return View(proRepo.receivedProduct(id));
         }
         [HttpGet]
         public ActionResult ViewProduct(int id)
         {
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
             return View(proRepo.Get(id));
         }
 
         [HttpGet]
         public ActionResult shipProduct()
         {
-            int id = (int)Session["uid"];
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
+            int id = Convert.ToInt32(Session["uid"]);
             return View(proRepo.shipAbleProduct(id));
         }
         [HttpGet]
         public ActionResult releaseProduct()
         {
-            int id = (int)Session["uid"];
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
+            int id = Convert.ToInt32(Session["uid"]);
             return View(proRepo.releaseAbleProduct(id));
         }
         [HttpGet]
         public ActionResult receiveProductfromCustomer(int id)
         {
-            int mid = (int)Session["uid"];
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
+            int mid = Convert.ToInt32(Session["uid"]);
             proRepo.receieveFromCustomer(id,mid);
             return RedirectToAction("receivedProduct");
         }
@@ -144,7 +222,12 @@ namespace CourierManagementSystem.Controllers
         [HttpGet]
         public ActionResult receiveProductfromBranch(int id)
         {
-            int mid = (int)Session["uid"];
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
+            int mid = Convert.ToInt32(Session["uid"]);
             proRepo.receieveFromBranch(id,mid);
             return RedirectToAction("receivedProduct");
         }
@@ -152,6 +235,11 @@ namespace CourierManagementSystem.Controllers
         [HttpGet]
         public ActionResult shippedProduct(int id)
         {
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
             proRepo.shipProduct(id);
             return RedirectToAction("shipProduct");
         }
@@ -159,36 +247,66 @@ namespace CourierManagementSystem.Controllers
         [HttpGet]
         public ActionResult releasedProduct(int id)
         {
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
             proRepo.releaseProduct(id);
             return RedirectToAction("releaseProduct");
         }
         [HttpGet]
         public ActionResult helpline()
         {
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
             return View();
         }
         [HttpPost]
         public ActionResult helpline(Employee_Problems ep)
         {
-            int id = (int)Session["uid"];
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
+            int id = Convert.ToInt32(Session["uid"]);
             epRepo.UpdateProblem(id, ep);
             return View();
         }
         [HttpGet]
         public ActionResult terms()
         {
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
             return View();
         }
         [HttpGet]
         public ActionResult updateInfo()
         {
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
             return View();
         }
 
         [HttpPost]
         public ActionResult updateInfo(Employee e)
         {
-            e.Id = (int)Session["uid"];
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
+            e.Id = Convert.ToInt32(Session["uid"]);
             empRepo.UpdateEmployee(e);
             return RedirectToAction("index");
         }
@@ -196,6 +314,11 @@ namespace CourierManagementSystem.Controllers
         [HttpPost]
         public ActionResult updatePassword(User u,FormCollection fc)
         {
+            if (Session["uid"] == null || Convert.ToInt32(Session["type"]) != 1)
+            {
+                TempData["errmsg"] = "You are not allowed to see the page without login";
+                return RedirectToAction("index", "login");
+            }
             if (userRepo.ValidatePassword(u.Id, fc["currentPass"]))
             {
                 TempData["errmsg"] = "Your Current Password is not correct";
@@ -205,8 +328,15 @@ namespace CourierManagementSystem.Controllers
             {
                 if (u.Password == fc["cpass"])
                 {
-                    userRepo.UpdatePassword(u.Id,u.Password);
-                    return RedirectToAction("index", "login");
+                    if (ModelState.IsValid)
+                    {
+                        userRepo.UpdatePassword(u.Id, u.Password);
+                        return RedirectToAction("index", "login");
+                    }
+                    else
+                    {
+                        return RedirectToAction("index");
+                    }
                 }
                 else
                 {

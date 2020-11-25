@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CourierManagementSystem.Models.Branch>
+﻿@model CourierManagementSystem.Models.Product
 @{
     ViewBag.Title = "CustNewOrder";
     Layout = "~/Views/Shared/_customer.cshtml";
@@ -25,10 +25,12 @@
                         <option value="3">Groceries</option>
                         <option value="3">Others</option>
                     </select>
+                    @Html.ValidationMessageFor(model => model.ProductCategory, "", new { @class = "text-danger" })
                     <br>
 
 
-                    <input type="textarea" class="form-control" name="description" placeholder="Describe the product" required>
+                    <input type="textarea" class="form-control" name="description" placeholder="Describe the product">
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                     <br>
                     <br>
 
@@ -40,6 +42,7 @@
                         <option value="2">Nexus</option>
                         <option value="3">Cash on deliver</option>
                     </select>
+                    @Html.ValidationMessageFor(model => model.PaymentMethod, "", new { @class = "text-danger" })
                     <br>
 
                     <select class="form-control" name="productType">
@@ -49,51 +52,58 @@
                         <option value="2">Medium</option>
                         <option value="3">Small</option>
                     </select>
+                    @Html.ValidationMessageFor(model => model.ProductType, "", new { @class = "text-danger" })
                     <br>
 
 
                     <select id="sid" class="form-control" name="sending_B_id">
                         <option selected hidden>Select Sending Branch</option>
-                        @foreach (var item in Model)
+                        @foreach (var item in ViewData["branches"] as List<CourierManagementSystem.Models.Branch>)
                         {
                             <option value="@item.Id">@item.Branch_Name</option>
                         }
                     </select>
+                    @Html.ValidationMessageFor(model => model.Sending_B_id, "", new { @class = "text-danger" })
                     <br>
 
                     <h2>Receiver Information</h2>
 
 
                     <input type="text" class="form-control" name="RecieverName" ; placeholder="Full Name" required>
+                    @Html.ValidationMessageFor(model => model.RecieverName, "", new { @class = "text-danger" })
                     <br>
 
 
 
 
                     <input type="text" class="form-control" name="RecieverContact" placeholder="Contact Number" required>
+                    @Html.ValidationMessageFor(model => model.RecieverContact, "", new { @class = "text-danger" })
                     <br>
 
 
 
 
                     <input type="text" class="form-control" name="RecieverEmail" placeholder="Email">
+                    @Html.ValidationMessageFor(model => model.RecieverEmail, "", new { @class = "text-danger" })
                     <br>
 
 
 
 
                     <input type="text" class="form-control" name="RecieverAddress" placeholder="Address" required>
+                    @Html.ValidationMessageFor(model => model.RecieverAddress, "", new { @class = "text-danger" })
                     <br>
 
 
 
                     <select class="form-control" name="Receiving_B_id">
                         <option selected hidden>Select Receiving Branch</option>
-                        @foreach (var item in Model)
+                        @foreach (var item in ViewData["branches"] as List<CourierManagementSystem.Models.Branch>)
                         {
                             <option value="@item.Id">@item.Branch_Name</option>
                         }
                     </select>
+                    @Html.ValidationMessageFor(model => model.Receiving_B_id, "", new { @class = "text-danger" })
                     <br>
 
                     <input type="submit" class="btn btn-primary" name="newdelivery" value="Confirm Delivery">

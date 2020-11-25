@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -41,20 +42,30 @@ namespace CourierManagementSystem.Models
             Released
         }
         public int Id { get; set; }
+        [Required]
         public int ProductType { get; set; }
         public int Customer_id { get; set; }
+        [Required]
         public int Receiving_B_id { get; set; }
+        [Required]
         public int Sending_B_id { get; set; }
         public double Delivery_charge { get; set; }
         public int Receiving_Manager_id { get; set; }
         public System.DateTime UpdatedDate { get; set; }
         public int Sending_Manager_id { get; set; }
+        [Required]
         public int ProductCategory { get; set; }
+        [Required]
         public int PaymentMethod { get; set; }
+        [Required]
         public string RecieverName { get; set; }
+        [Required,EmailAddress]
         public string RecieverEmail { get; set; }
+        [Required]
         public string RecieverContact { get; set; }
+        [Required]
         public string RecieverAddress { get; set; }
+        [Required]
         public string Description { get; set; }
         public int Product_State { get; set; }
         public Nullable<System.DateTime> Release_Date { get; set; }

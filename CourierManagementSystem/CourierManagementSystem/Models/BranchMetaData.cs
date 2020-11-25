@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,7 +10,9 @@ namespace CourierManagementSystem.Models
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public int Id { get; set; }
+        [Required]
         public string Branch_Name { get; set; }
+        [Required]
         public string Address { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
 

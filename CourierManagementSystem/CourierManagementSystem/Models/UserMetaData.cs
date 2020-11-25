@@ -15,10 +15,12 @@ namespace CourierManagementSystem.Models
             Customer
         }
         public int Id { get; set; }
-        [Required]
+        [Required,MinLength(6)]
         public string UserName { get; set; }
+        [Required, EmailAddress]
         public string EmailAddress { get; set; }
         public System.DateTime UpdatedDate { get; set; }
+        [Required,MinLength(6)]
         public string Password { get; set; }
         public int UserType { get; set; }
         public int Status { get; set; }

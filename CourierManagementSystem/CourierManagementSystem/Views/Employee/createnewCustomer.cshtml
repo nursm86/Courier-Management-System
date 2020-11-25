@@ -1,4 +1,5 @@
-﻿@{
+﻿@model CourierManagementSystem.Models.ViewModels.CustomerViewModel
+@{
     ViewBag.Title = "createnewCustomer";
     Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
 }
@@ -24,42 +25,42 @@
                     <div class="form-group">
                         <label>Name:</label>
                         <input type="text" class="form-control" name="name" value="">
-                        <span style="color:red;"></span>
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         <label>UserName:</label>
-                        <input type="text" class="form-control" name="UserName" value="">
-                        <span style="color:red;"></span>
+                        <input type="text" class="form-control" name="username" value="">
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         <label>Password:</label>
                         <input type="password" class="form-control" name="password" value="">
-                        <span style="color:red;"></span>
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         <label>ConfirmPassword:</label>
                         <input type="password" class="form-control" name="confirmPassword" value="">
-                        <span style="color:red;"></span>
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         <label>Contact:</label>
                         <input type="text" class="form-control" name="Contact" value="">
-                        <span style="color:red;"></span>
+                        @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         <label>Email:</label>
                         <input type="email" class="form-control" name="EmailAddress" value="">
-                        <span style="color:red;"></span>
+                        @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         <label>Address:</label>
-                        <input type="textarea" class="form-control" name="address" value="">
-                        <span style="color:red;"></span>
+                        <input type="text" class="form-control" name="address" value="">
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         <label>Security Que:</label>
                         <input type="text" class="form-control" name="sequrity_Que" value="" placeholder="Who is your best friend?">
-                        <span style="color:red;"></span>
+                        @Html.ValidationMessageFor(model => model.Sequrity_Que, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" name="addCustomer" value="Add Customer">

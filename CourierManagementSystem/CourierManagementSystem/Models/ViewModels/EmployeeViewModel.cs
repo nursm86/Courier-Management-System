@@ -4,11 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace CourierManagementSystem.Models
+namespace CourierManagementSystem.Models.ViewModels
 {
-    public class EmployeeMetaData
+    public class EmployeeViewModel
     {
-        [Required,StringLength(20)]
         public string Name { get; set; }
         public Nullable<System.DateTime> Joining_date { get; set; }
         public Nullable<System.DateTime> DOB { get; set; }
@@ -27,11 +26,13 @@ namespace CourierManagementSystem.Models
         [Required]
         public string Qualification { get; set; }
 
-        public virtual Branch Branch { get; set; }
-        public virtual User User { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products1 { get; set; }
+        public string UserName { get; set; }
+        [Required, EmailAddress]
+        public string EmailAddress { get; set; }
+        [Required, MinLength(6)]
+        public string Password { get; set; }
+        public int UserType { get; set; }
+        public int Status { get; set; }
+        public string image { get; set; }
     }
 }
