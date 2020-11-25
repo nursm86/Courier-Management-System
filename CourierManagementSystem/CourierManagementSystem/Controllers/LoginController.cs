@@ -44,7 +44,20 @@ namespace CourierManagementSystem.Controllers
                 }
                 else if (validUser.UserType == (int)UserMetaData.UserTypeEnum.Customer)
                 {
-                    return RedirectToAction("index", "Customer");
+                    if (validUser.Status == 1)
+                    {
+                        return RedirectToAction("index", "Customer");
+                    }
+                    else if(validUser.Status == 2)
+                    {
+                        TempData["errmsg"] = "You Have been Blocked!!! to unblock Please contact nearest Branch";
+                        return RedirectToAction("index");
+                    }
+                    else
+                    {
+                        TempData["errmsg"] = "You are not verified Please Wait till you are verified!!!";
+                        return RedirectToAction("index");
+                    }
                 }
                 else
                 {
@@ -63,6 +76,15 @@ namespace CourierManagementSystem.Controllers
         public ActionResult Registration()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Registration(Customer c,User u)
+        {
+            u.Status = 0;
+            userRepo.insertUser(u, c);
+            TempData["errmsg"] = "You Account has been create Please wait untill you are verified";
+            return RedirectToAction("index");
         }
     }
 }

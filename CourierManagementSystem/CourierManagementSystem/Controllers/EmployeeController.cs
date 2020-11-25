@@ -15,6 +15,7 @@ namespace CourierManagementSystem.Controllers
         CustomerRepository cusRepo = new CustomerRepository();
         ProductRepository proRepo = new ProductRepository();
         Employee_ProblemRepository epRepo = new Employee_ProblemRepository();
+        Validator v = new Validator();
         [HttpGet]
         public ActionResult Index()
         {
@@ -94,8 +95,18 @@ namespace CourierManagementSystem.Controllers
         [HttpPost]
         public ActionResult createnewCustomer(User u,Customer c)
         {
-            userRepo.insertUser(u, c);
-            return RedirectToAction("viewCustomers");
+            if(v.validate(u) != null)
+            {
+                u.Status = 1;
+                userRepo.insertUser(u, c);
+                return RedirectToAction("viewCustomers");
+            }
+            else
+            {
+                TempData["errmsg"] = v.validate(u);
+                return RedirectToAction("createnewCustomer");
+            }
+            
         }
         [HttpGet]
         public ActionResult receivedProduct()

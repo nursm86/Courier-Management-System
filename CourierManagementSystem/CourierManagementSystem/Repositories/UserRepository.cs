@@ -48,7 +48,6 @@ namespace CourierManagementSystem.Repositories
 
         public void insertUser(User u,Customer c)
         {
-            u.Status = 1;
             u.UserType = 2;
             u.UpdatedDate = DateTime.Now;
             u.image = null;

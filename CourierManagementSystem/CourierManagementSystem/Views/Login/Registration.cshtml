@@ -31,8 +31,9 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto" align="right">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.php">Home </a>
-                </ul>
+                        <a class="nav-link" href="/home">Home </a>
+                        <a class="nav-link" href="/login">Login </a>
+</ul>
             </div>
         </nav>
     </section>
@@ -41,7 +42,7 @@
         <div class="d-flex justify-content-center align-items-center container ">
             <div class="col-md-8 donor">
                 <h1 class="text-white bg-dark text-center">
-                    Create New Customer
+                   Create New User Account
                 </h1>
                 <form action="" method="post">
                     <table>
@@ -52,7 +53,7 @@
                         </div>
                         <div class="form-group">
                             <label>UserName:</label>
-                            <input type="text" class="form-control" name="uname" value="" required>
+                            <input type="text" class="form-control" name="username" value="" required>
                             <span style="color:red;"></span>
                         </div>
                         <div class="form-group">
@@ -72,7 +73,7 @@
                         </div>
                         <div class="form-group">
                             <label>Email:</label>
-                            <input type="email" class="form-control" name="email" value="" required>
+                            <input type="email" class="form-control" name="emailaddress" value="" required>
                             <span style="color:red;"></span>
                         </div>
                         <div class="form-group">
@@ -82,11 +83,12 @@
                         </div>
                         <div class="form-group">
                             <label>Security Que:</label>
-                            <input type="text" class="form-control" name="securityQue" value="" placeholder="Who is your best friend?" required>
+                            <input type="text" class="form-control" name="sequrity_Que" value="" placeholder="Who is your best friend?" required>
                             <span style="color:red;"></span>
                         </div>
                         <div class="form-group">
-                            <input type="submit" class="btn btn-primary" name="addCustomer" value="Add Customer">
+                            <input type="submit" class="btn btn-primary" name="addCustomer" value="Register">
+                            <label>Alreay Have an Account<a href="/login">Click Here</a> to log In</label>
                         </div>
                     </table>
                 </form>

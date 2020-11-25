@@ -66,6 +66,12 @@ namespace CourierManagementSystem.Repositories
             this.context.Employees.Add(employee);
             this.context.SaveChanges();
         }
-        
+
+        public string getContact(int id)
+        {
+            Employee e = GetAll().Where<Employee>(x => x.Branch_id == id).FirstOrDefault();
+            return e.Contact;
+        }
+
     }
 }

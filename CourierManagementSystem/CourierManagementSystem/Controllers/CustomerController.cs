@@ -14,6 +14,7 @@ namespace CourierManagementSystem.Controllers
         CustomerRepository cusRepo = new CustomerRepository();
         ProductRepository proRepo = new ProductRepository();
         BranchRepository branchRepo = new BranchRepository();
+        EmployeeRepository empRepo = new EmployeeRepository();
         // GET: Customer
         [HttpGet]
         public ActionResult Index()
@@ -70,11 +71,15 @@ namespace CourierManagementSystem.Controllers
             proRepo.insertProduct(p);
             return RedirectToAction("trackProduct");
         }
-        [HttpGet]
-        public ActionResult CustHelpLine()
+
+        [HttpPost]
+        public ActionResult CustHelpLine(string sbid)
         {
-            return View();
+            return Json("bal");
+            //ViewBag["branches"] = branchRepo.GetAll();
+            //return View(empRepo.GetAll());
         }
+
         [HttpGet]
         public ActionResult CustTermCondition()
         {

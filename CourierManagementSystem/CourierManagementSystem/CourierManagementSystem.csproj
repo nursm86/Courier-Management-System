@@ -206,6 +206,7 @@
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\Validator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -228,7 +229,6 @@
     <Content Include="Views\Customer\TrackProduct.cshtml" />
     <Content Include="Views\Customer\CustServiceHistory.cshtml" />
     <Content Include="Views\Customer\CustNewOrder.cshtml" />
-    <Content Include="Views\Customer\CustHelpLine.cshtml" />
     <Content Include="Views\Employee\createnewCustomer.cshtml" />
     <Content Include="Views\Employee\helpline.cshtml" />
     <Content Include="Views\Employee\receivedProduct.cshtml" />

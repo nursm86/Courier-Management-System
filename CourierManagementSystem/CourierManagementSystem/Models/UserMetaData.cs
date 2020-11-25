@@ -14,8 +14,8 @@ namespace CourierManagementSystem.Models
             Employee,
             Customer
         }
-
         public int Id { get; set; }
+        [Required]
         public string UserName { get; set; }
         public string EmailAddress { get; set; }
         public System.DateTime UpdatedDate { get; set; }

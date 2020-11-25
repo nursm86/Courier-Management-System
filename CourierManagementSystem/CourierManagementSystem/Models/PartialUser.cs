@@ -9,5 +9,6 @@ namespace CourierManagementSystem.Models
     [MetadataType(typeof(UserMetaData))]
     public partial class User
     {
+        
     }
 }
